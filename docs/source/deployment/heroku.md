@@ -24,7 +24,18 @@ Name your app and hit "Create app"
 ![Create App Screenshot](../images/deployment/heroku/create-app.png)
 
 ## Setting up the project
-
+You would have to set introspection to true on production , by default it is false.
+```
+const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    dataSources,
+    introspection:true,
+    engine: {
+        apiKey: "service:<service key goes here>"
+     }
+})
+```
 For Heroku, projects can be setup using any of the `apollo-server` HTTP variants (like express, hapi, etc).
 
 The only special consideration that needs to be made is to allow heroku to choose the port that the server is deployed to. Otherwise, there may be errors, such as a request timeout.
